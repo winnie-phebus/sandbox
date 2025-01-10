@@ -12,10 +12,20 @@
         fill: brown;
         fill-opacity: 0.15;
       }
-      .brow {
+      .hair {
         fill: brown;
         /* stroke: black; */
         /* stroke-width: 1; */
+      }
+      .skindetail {
+        fill: none;
+        stroke: brown;
+        stroke-width: 1.5;
+        stroke-opacity: 0.5;
+      }
+      .flush {
+        fill: red;
+        fill-opacity: 0.15;
       }
     </style>
   </head>
@@ -58,12 +68,14 @@
           <g id="brows">
             <path
               id="left-brow"
-              class="brow"
-              d="M 125, 150  C150, 140 175, 140 175, 150 Z" />
+              class="brow hair"
+              d="M 125, 162  C150, 150 175, 145 182, 160 Q 155, 155 125,162 Z"
+              transform="rotate(10 182, 160)" />
             <path
               id="right-brow"
-              class="brow"
-              d="M 225, 150  C225, 140 250, 140 275, 150 Z" />
+              class="brow hair"
+              d="M 217, 162  C225, 145 250, 150 275, 160 Q 245, 155 217,162"
+              transform="rotate(-10 217, 160)" />
           </g>
           <g id="eyes">
             <g id="left-eye" transform="rotate(15 150 200)">
@@ -73,9 +85,7 @@
                 cx="150"
                 cy="195"
                 rx="26"
-                ry="20"
-                fill="brown"
-                fill-opacity=".1" />
+                ry="20" />
               <ellipse
                 id="lashline"
                 cx="149"
@@ -88,8 +98,9 @@
                 cx="150"
                 cy="200"
                 rx="25"
-                ry="15"
+                ry="14"
                 fill="white" />
+              <circle id="pupil" cx="150" cy="200" r="10" fill="black" />
             </g>
             <g id="right-eye" transform="rotate(-15 250 200)">
               <ellipse
@@ -98,9 +109,7 @@
                 cx="250"
                 cy="195"
                 rx="26"
-                ry="20"
-                fill="brown"
-                fill-opacity=".1" />
+                ry="20" />
               <ellipse
                 id="lashline"
                 cx="251"
@@ -113,31 +122,42 @@
                 cx="250"
                 cy="200"
                 rx="25"
-                ry="15"
+                ry="14"
                 fill="white" />
+              <circle id="pupil" cx="250" cy="200" r="10" fill="black" />
             </g>
           </g>
           <g id="nose">
-            <path
-              id="nostrils"
-              class="shadowedskin"
-              d="M 200, 200  C 190, 220 210, 220 200, 200 Z" />
             <polygon
               id="base"
               class="shadowedskin"
-              points="195,200 190,240  195,245 205,245 210,240 205,200 " />
+              points="197,200 185,240  195,245 205,245 215,240 203,200 " />
             <polygon
-              id="tip"
+              id="bridge"
               class="skintone"
-              points="196,239 196,200 204,200 204,239" />
+              points="195,200 190,234 197,240 203,240 210,234 205,200 " />
+            <g id="nostrils" class="skindetail">
+              <line id="left-nostril" x1="191" y1="240" x2="194" y2="242" />
+              <line id="right-nostril" x1="209" y1="240" x2="206" y2="242" />
+              <!-- <path id="left-nostril" d="M 196, 244 L 196,240 199,244" /> -->
+            </g>
           </g>
           <g id="mouth">
             <path
+              id="upper-lip"
+              class="flush"
+              d="M 170, 270 Q 195,260 200,265 Q 205,260 230,270  Q 200,275 170,270" />
+            <path
               id="lipline"
-              class="shadowedskin"
-              d="M 160, 270 Q 200,285 240,270" />
+              class="skindetail"
+              d="M 165, 270 Q 200,275 235,270" />
+            <path
+              id="lower-lip"
+              class="flush"
+              d="M 170, 270 Q 200,275 230,270 Q 200,290 170,270 Z" />
           </g>
         </g>
+        <g id="bangs" class="hair"></g>
       </g>
     </svg>
   </body>
