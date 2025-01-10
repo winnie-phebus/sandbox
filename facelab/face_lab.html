@@ -33,77 +33,109 @@
         fill="blue"
         fill-opacity="20%" />
       <g id="head">
-        <ellipse
-          id="scalp"
-          class="skintone"
-          cx="200"
-          cy="180"
-          rx="100"
-          ry="100" />
-        <path
-          id="jaw"
-          class="skintone"
-          d="M 100, 180  C125, 360 275, 360 300, 180 Z" />
-        <g id="brows">
+        <g id="ears">
           <path
-            id="left-brow"
-            class="brow"
-            d="M 125, 150  C150, 140 175, 140 175, 150 Z" />
+            id="left-ear"
+            class="skintone"
+            d="M 100, 180  C 50, 150 50, 300 190, 220 Z" />
           <path
-            id="right-brow"
-            class="brow"
-            d="M 225, 150  C225, 140 250, 140 275, 150 Z" />
+            id="right-ear"
+            class="skintone"
+            d="M 300, 180  C 350, 150 350, 300 210, 220 Z" />
         </g>
-        <g id="eyes">
-          <g id="left-eye" transform="rotate(15 150 200)">
-            <ellipse
-              id="eyelid"
-              class="shadowedskin"
-              cx="150"
-              cy="195"
-              rx="26"
-              ry="20"
-              fill="brown"
-              fill-opacity=".1" />
-            <ellipse
-              id="lashline"
-              cx="149"
-              cy="199"
-              rx="27"
-              ry="17"
-              fill="black" />
-            <ellipse
-              id="sclera"
-              cx="150"
-              cy="200"
-              rx="25"
-              ry="15"
-              fill="white" />
+        <g id="face">
+          <ellipse
+            id="forehead"
+            class="skintone"
+            cx="200"
+            cy="180"
+            rx="100"
+            ry="100" />
+          <path
+            id="jaw"
+            class="skintone"
+            d="M 100, 180  C125, 360 275, 360 300, 180 Z" />
+          <g id="brows">
+            <path
+              id="left-brow"
+              class="brow"
+              d="M 125, 150  C150, 140 175, 140 175, 150 Z" />
+            <path
+              id="right-brow"
+              class="brow"
+              d="M 225, 150  C225, 140 250, 140 275, 150 Z" />
           </g>
-          <g id="right-eye" transform="rotate(-15 250 200)">
-            <ellipse
-              id="eyelid"
+          <g id="eyes">
+            <g id="left-eye" transform="rotate(15 150 200)">
+              <ellipse
+                id="eyelid"
+                class="shadowedskin"
+                cx="150"
+                cy="195"
+                rx="26"
+                ry="20"
+                fill="brown"
+                fill-opacity=".1" />
+              <ellipse
+                id="lashline"
+                cx="149"
+                cy="199"
+                rx="27"
+                ry="17"
+                fill="black" />
+              <ellipse
+                id="sclera"
+                cx="150"
+                cy="200"
+                rx="25"
+                ry="15"
+                fill="white" />
+            </g>
+            <g id="right-eye" transform="rotate(-15 250 200)">
+              <ellipse
+                id="eyelid"
+                class="shadowedskin"
+                cx="250"
+                cy="195"
+                rx="26"
+                ry="20"
+                fill="brown"
+                fill-opacity=".1" />
+              <ellipse
+                id="lashline"
+                cx="251"
+                cy="199"
+                rx="27"
+                ry="17"
+                fill="black" />
+              <ellipse
+                id="sclera"
+                cx="250"
+                cy="200"
+                rx="25"
+                ry="15"
+                fill="white" />
+            </g>
+          </g>
+          <g id="nose">
+            <path
+              id="nostrils"
               class="shadowedskin"
-              cx="250"
-              cy="195"
-              rx="26"
-              ry="20"
-              fill="brown"
-              fill-opacity=".1" />
-            <ellipse
-              id="lashline"
-              cx="251"
-              cy="199"
-              rx="27"
-              ry="17"
-              fill="black" />
-            <ellipse
-              id="sclera"
-              cx="250"
-              cy="200"
-              rx="25"
-              ry="15"
-              fill="white" />
+              d="M 200, 200  C 190, 220 210, 220 200, 200 Z" />
+            <polygon
+              id="base"
+              class="shadowedskin"
+              points="195,200 190,240  195,245 205,245 210,240 205,200 " />
+            <polygon
+              id="tip"
+              class="skintone"
+              points="196,239 196,200 204,200 204,239" />
+          </g>
+          <g id="mouth">
+            <path
+              id="lipline"
+              class="shadowedskin"
+              d="M 160, 270 Q 200,285 240,270" />
           </g>
         </g>
       </g>
