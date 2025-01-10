@@ -1,0 +1,112 @@
+<html>
+  <head>
+    <!-- <title>Face Lab</title>
+        <link rel="stylesheet" type="text/css" href="face_lab.css">
+        <script src="face_lab.js"></script> -->
+    <style>
+      .skintone {
+        fill: #f0d8c0;
+      }
+
+      .shadowedskin {
+        fill: brown;
+        fill-opacity: 0.15;
+      }
+      .brow {
+        fill: brown;
+        /* stroke: black; */
+        /* stroke-width: 1; */
+      }
+    </style>
+  </head>
+  <body>
+    <title>Face Lab</title>
+    <svg
+      width="100%"
+      height="100%"
+      viewBox="0 0 400 400"
+      xmlns="http://www.w3.org/2000/svg">
+      <rect
+        id="background"
+        width="100%"
+        height="100%"
+        fill="blue"
+        fill-opacity="20%" />
+      <g id="head">
+        <ellipse
+          id="scalp"
+          class="skintone"
+          cx="200"
+          cy="180"
+          rx="100"
+          ry="100" />
+        <path
+          id="jaw"
+          class="skintone"
+          d="M 100, 180  C125, 360 275, 360 300, 180 Z" />
+        <g id="brows">
+          <path
+            id="left-brow"
+            class="brow"
+            d="M 125, 150  C150, 140 175, 140 175, 150 Z" />
+          <path
+            id="right-brow"
+            class="brow"
+            d="M 225, 150  C225, 140 250, 140 275, 150 Z" />
+        </g>
+        <g id="eyes">
+          <g id="left-eye" transform="rotate(15 150 200)">
+            <ellipse
+              id="eyelid"
+              class="shadowedskin"
+              cx="150"
+              cy="195"
+              rx="26"
+              ry="20"
+              fill="brown"
+              fill-opacity=".1" />
+            <ellipse
+              id="lashline"
+              cx="149"
+              cy="199"
+              rx="27"
+              ry="17"
+              fill="black" />
+            <ellipse
+              id="sclera"
+              cx="150"
+              cy="200"
+              rx="25"
+              ry="15"
+              fill="white" />
+          </g>
+          <g id="right-eye" transform="rotate(-15 250 200)">
+            <ellipse
+              id="eyelid"
+              class="shadowedskin"
+              cx="250"
+              cy="195"
+              rx="26"
+              ry="20"
+              fill="brown"
+              fill-opacity=".1" />
+            <ellipse
+              id="lashline"
+              cx="251"
+              cy="199"
+              rx="27"
+              ry="17"
+              fill="black" />
+            <ellipse
+              id="sclera"
+              cx="250"
+              cy="200"
+              rx="25"
+              ry="15"
+              fill="white" />
+          </g>
+        </g>
+      </g>
+    </svg>
+  </body>
+</html>
