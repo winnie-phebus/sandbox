@@ -1,0 +1,139 @@
+/* Color Properties */
+:root {
+  /* website */
+  --background: #acd6ff;
+  --text: #333;
+  --accent: #72bcff;
+  --accent-dark: #df9d88;
+  --accent-light: #ffb788;
+  --foreground: #72a5e7;
+  --foreground-dark: #3f7fcf;
+  --onforeground: #fff;
+  /* details */
+  --skin: #f0d8c0;
+  --hair: brown;
+  --shadow: brown;
+  --shadow-opacity: 0.15;
+  --detail: brown;
+  --detail-opacity: 0.5;
+  --flush: red;
+  --flush-opacity: 0.25;
+}
+
+/*  SVG Commons */
+svg .skintone {
+  fill: var(--skin);
+}
+
+.shadowedskin {
+  fill: brown;
+  fill-opacity: 0.15;
+}
+
+.hair {
+  fill: brown;
+}
+
+.skindetail {
+  fill: none;
+  stroke: brown;
+  stroke-width: 1.5;
+  stroke-opacity: 0.5;
+  stroke-linecap: round;
+}
+
+.flush {
+  fill: red;
+  fill-opacity: var(--flush-opacity);
+}
+
+.shadowed {
+  filter: url(#darken);
+}
+
+/* Alignment & Layout*/
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: fit-content;
+}
+
+/* Style */
+body {
+  background-color: var(--background);
+  font-family: "Roboto", sans-serif;
+}
+
+h1 {
+  color: var(--foreground-dark);
+  text-align: center;
+  padding: 1.5%;
+}
+
+h3 {
+  margin: auto;
+  text-align: center;
+}
+
+button {
+  display: flex;
+  background-color: var(--accent-light);
+  color: var(--text);
+  border: var(--accent-dark) 2px solid;
+  border-radius: 15px;
+  padding: 5px;
+  margin: 1%;
+  text-align: center;
+  font-weight: 600;
+  font-variant-caps: all-petite-caps;
+  color: var(--onforeground);
+  /* cursor: pointer; */
+}
+
+.card {
+  background-color: var(--onforeground);
+  margin: 3%;
+  /* padding: 1.5%; */
+  border-radius: 2rem;
+  /* height: 30%; */
+  aspect-ratio: 4/3;
+  max-height: 25%;
+  /* clip-path: border-box; */
+  overflow: hidden;
+  box-shadow: var(--foreground) 0px 20px 30px -10px;
+  /* above is: https://getcssscan.com/css-box-shadow-examples #20 */
+}
+
+.card .header {
+  /* display: block; */
+  /* padding: 1.5%; */
+  height: 25%;
+  /* vertical-align: middle; */
+  /* margin-bottom: 20; */
+  align-content: center;
+  border: inherit;
+  color: var(--onforeground);
+  background-color: var(--foreground);
+}
+
+.card .body {
+  position: absolute;
+  padding: 2%;
+  display: flexbox;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+}
+
+/* SVG */
+.svg-container {
+  display: block;
+  margin: auto;
+  width: 80%;
+  height: max-content;
+  background-color: var(--accent);
+  border-radius: 20%;
+  /* clip-path: border-box; */
+  overflow: hidden;
+  box-shadow: var(--foreground-dark) 0px 20px 30px -10px;
+}
