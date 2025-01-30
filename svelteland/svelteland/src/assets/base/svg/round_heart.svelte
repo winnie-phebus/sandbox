@@ -1,19 +1,12 @@
 <script lang="ts">
   let {
-    color = "black",
+    color = "red",
     cx = 100,
     cy = 100,
     width = 50,
     cr = 1,
     cfill = "red",
   } = $props();
-
-  //     color = $state(color);
-  //   cx = $state(100);
-  //   cy = $state(100);
-  //   let width = $state(50);
-  //   let cr = $state(1);
-  //   let cfill = $state("red");
 
   function pathPoint(x: number, y: number) {
     return `${x} ${y}`;

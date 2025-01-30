@@ -8,3 +8,7 @@ class Point {
     return `${this.x},${this.y}`;
   }
 }
+
+  function pathPoint(x: number, y: number) {
+    return `${x} ${y}`;
+  }
