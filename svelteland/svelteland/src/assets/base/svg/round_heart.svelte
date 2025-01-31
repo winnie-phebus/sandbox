@@ -30,14 +30,6 @@
   const curvePath = $derived(
     `M${curveStart} C${curveMin} ${curveMax} ${curveStop}`
   );
-
-  function setColor(newColor: string) {
-    color = newColor;
-  }
-
-  function setWidth(newWidth: number) {
-    width = newWidth;
-  }
 </script>
 
 <svg
