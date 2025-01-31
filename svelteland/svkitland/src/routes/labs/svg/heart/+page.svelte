@@ -2,9 +2,19 @@
 <script lang="ts">
 	import RoundHeart from './round_heart.svelte';
 	import CollapsibleControl from '$lib/components/CollapsibleControl.svelte';
-	import Reset from '$lib/icons/reset.svelte';
+	import ControlAdjuster from '$lib/components/controlAdjuster.svelte';
+	import type { ControlSet } from '$lib/components/controlAdjuster.svelte';
 
-	const heartValuesDefault = {
+	type heartValues = {
+		color: string;
+		cx: number;
+		cy: number;
+		width: number;
+		cr: number;
+		cfill: string;
+	};
+
+	const heartValuesDefault: heartValues = {
 		color: '#ff0000',
 		cx: 100,
 		cy: 100,
@@ -13,9 +23,12 @@
 		cfill: 'black'
 	};
 
-	const roundHeart = $state(heartValuesDefault);
+	let roundHeart = $state(heartValuesDefault);
 
-	const heartValueControls = {
+	type HvControls = ControlSet<heartValues>;
+	type HvProperty = keyof heartValues;
+
+	const heartValueControls: HvControls = {
 		color: { type: 'color', defaultVal: heartValuesDefault.color },
 		cx: {
 			type: 'number',
@@ -59,51 +72,20 @@
 		</div>
 	{/snippet}
 
-	{#snippet resetButton(
-		adjustible: { [key: string]: number | string },
-		key: string,
-		defaultVal: number | string
-	)}
-		<button class="reset" onclick={() => (adjustible[key] = defaultVal)}
-			><Reset color={'red'} width={20} height={20} />
-		</button>
-	{/snippet}
-
-	{#snippet numberAdjuster(adjustible: { [key: string]: number | string },
-		key: string, { defaultVal: number, min:number, max:number, step:number })}
-		{@render resetButton(adjustible, key, defaultVal)}
-		<button onclick={() => (adjustible[key] -= step)}>-</button>
-		<input type="range" {min} {max} bind:value={adjustible[key]} />
-		<button onclick={() => (adjustible[key] += step)}>+</button>
-	{/snippet}
-
-	{#snippet colorAdjuster(adjustible: { [key: string]: number | string },
-		key: string, { defaultVal: string })}
-		{@render resetButton(adjustible, key, defaultVal)}
-		<input type="color" bind:value={adjustible[key]} />
-	{/snippet}
-
-	{#snippet collapsible(adjustible, key, controls)}
-		<CollapsibleControl>
-			<div class="contents adjuster">
-				{#if controls.type === 'number'}
-					{@render numberAdjuster(adjustible, key, { ...controls })}
-				{:else if controls.type === 'color'}
-					{@render colorAdjuster(adjustible, key, { ...controls })}
-				{:else}
-					<p>Unsupported control type: {controls.type}</p>
-				{/if}
-			</div>
-		</CollapsibleControl>
-	{/snippet}
-
 	<div class="card">
 		<RoundHeart {...roundHeart} />
 		<div class="heartControls">
 			{#each Object.keys(heartValueControls) as key}
 				<div class="hDataContainer">
-					{@render heartDataValue(roundHeart[key], key)}
-					{@render collapsible(roundHeart, key, heartValueControls[key])}
+					{@render heartDataValue(roundHeart[key as keyof heartValues], key)}
+					<CollapsibleControl>
+						<div class="contents">
+							<ControlAdjuster
+								bind:value={roundHeart[key as keyof heartValues]}
+								controls={heartValueControls[key as keyof heartValues]}
+							/>
+						</div>
+					</CollapsibleControl>
 				</div>
 			{/each}
 		</div>
@@ -143,37 +125,6 @@
 		padding: 0.3rem;
 		margin: 0.2rem;
 		height: match-parent;
-	}
-
-	.hDataContainer .adjuster input[type='range'] {
-		accent-color: var(--accent-color);
-		margin: 2%;
-	}
-	.hDataContainer .adjuster input[type='color'] {
-		appearance: none;
-		accent-color: var(--accent-color);
-		background: transparent;
-		border: none;
-		border-radius: 25%;
-		padding: 0;
-		margin: 2%;
-	}
-
-	input[type='color']::-webkit-color-swatch {
-		border-radius: 2rem;
-		border: 2px solid var(--accent-color);
-		height: 1rem;
-	}
-
-	.hDataContainer button.reset {
-		display: flex;
-		background-color: var(--accent-color);
-		color: var(--on-primary);
-		border: none;
-		border-radius: 50%;
-		padding: 0.25rem;
-		margin: 2%;
-		align-content: center;
 	}
 
 	.hDataContainer .hData {
