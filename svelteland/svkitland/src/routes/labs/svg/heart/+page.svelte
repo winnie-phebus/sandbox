@@ -1,3 +1,4 @@
+<!-- @migration-task Error while migrating Svelte code: Argument name clash (72:41) -->
 <script lang="ts">
 	import RoundHeart from './round_heart.svelte';
 	import CollapsibleControl from '$lib/components/CollapsibleControl.svelte';
