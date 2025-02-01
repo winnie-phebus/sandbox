@@ -62,8 +62,6 @@
 	};
 </script>
 
-<h1>Heart Lab</h1>
-
 <main>
 	{#snippet heartDataValue(value: number | string, label: string = '')}
 		<div class="hData">
@@ -73,7 +71,11 @@
 	{/snippet}
 
 	<div class="card">
-		<RoundHeart {...roundHeart} />
+		<h1>Heart Lab</h1>
+		<sub>Version 1: Built around round_heart</sub>
+		<div class="heartSvgContainer">
+			<RoundHeart {...roundHeart} />
+		</div>
 		<div class="heartControls">
 			{#each Object.keys(heartValueControls) as key}
 				<div class="hDataContainer">
@@ -94,10 +96,30 @@
 
 <style>
 	main {
-		--fill-color: red;
+		--fill-color: palevioletred;
 		--primary-color: red;
 		--on-primary: white;
 		--accent-color: pink;
+		width: 90%;
+		margin: 0 auto;
+	}
+
+	.card {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		margin: 1rem;
+	}
+
+	.card .heartSvgContainer {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border: 5px dotted var(--accent-color);
+		border-radius: 15%;
+		margin: 0.2in;
+		padding: 0.2in;
 	}
 
 	.heartControls {
@@ -105,16 +127,17 @@
 		justify-content: center;
 		align-items: center;
 		flex-wrap: wrap;
+		margin: 2%;
 	}
 
 	.hDataContainer {
 		display: flex;
 		justify-content: start;
-		height: fit-content;
+		height: max-content;
 		align-items: center;
 		border: 1px solid var(--accent-color);
 		border-radius: 2rem;
-		margin: 0.5rem;
+		margin: 0.25in;
 	}
 
 	.hDataContainer .contents {
@@ -124,20 +147,20 @@
 		/* border: 1px solid var(--accent-color); */
 		padding: 0.3rem;
 		margin: 0.2rem;
-		height: match-parent;
+		height: min-content;
 	}
 
 	.hDataContainer .hData {
 		display: flex;
 		float: inline-start;
 		flex-direction: column;
-		height: fit-content;
+		height: 100%;
 		width: fit-content;
 		padding: 1rem;
 		background-color: var(--primary-color);
 		color: var(--on-primary);
 		justify-content: center;
-		align-items: center;
+		align-items: end;
 		border-top-left-radius: inherit;
 		border-bottom-left-radius: inherit;
 	}

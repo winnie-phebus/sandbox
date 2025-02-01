@@ -44,7 +44,6 @@
 		<div class="adjuster">
 			{#if controls.type === 'number'}
 				{@const numControls = controls as NumberControls}
-				{@const step = numControls.step}
 				<input type="number" min={numControls.min} max={numControls.max} bind:value />
 				<input type="range" min={controls.min} max={controls.max} bind:value />
 			{:else if controls.type === 'color'}
@@ -57,13 +56,26 @@
 </main>
 
 <style>
-	.container .adjuster {
+	.container {
 		display: inline-flex;
+		justify-content: center;
+		align-items: center;
+		/* padding: 0.3rem; */
+		margin: 0.05in;
+		height: 100%;
+		width: 100%;
+	}
+
+	.adjuster {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin: 2.5%;
 	}
 
 	.container .adjuster input[type='range'] {
 		accent-color: var(--accent-color);
-		margin: 2%;
+		/* margin: 2%; */
 	}
 	.container .adjuster input[type='color'] {
 		appearance: none;
