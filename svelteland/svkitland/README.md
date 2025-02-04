@@ -207,27 +207,29 @@ You can preview the production build with `npm run preview`.
 - https://css-tricks.com/svg-filters-on-text/
 - https://frontend.horse/articles/gooey-countdown-svg/
 
-### Fills & Strokes (& Patterns)
+### Fills & Strokes
 
 - https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Fills_and_Strokes
-- https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Patterns
-- https://developer.mozilla.org/en-US/docs/Web/SVG/Element/pattern
-- https://css-tricks.com/snippets/svg/svg-patterns/
-- https://css-tricks.com/creating-patterns-with-svg-filters/
 - https://css-tricks.com/mastering-svgs-stroke-miterlimit-attribute/
 - https://svgwg.org/svg2-draft/painting.html
 - https://css-tricks.com/almanac/properties/s/stroke-dasharray/
 - https://css-tricks.com/almanac/properties/s/stroke-dashoffset/
-- https://css-tricks.com/how-we-created-a-static-site-that-generates-tartan-patterns-in-svg/
 - https://css-tricks.com/add-background-colors-to-svgs-using-the-rect-element/
+
+#### Patterns
+
+- https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Patterns
+- https://developer.mozilla.org/en-US/docs/Web/SVG/Element/pattern
+- https://css-tricks.com/snippets/svg/svg-patterns/
+- https://css-tricks.com/creating-patterns-with-svg-filters/
 - https://css-tricks.com/simple-patterns-for-separation/
 - https://www.bocoup.com/blog/using-svg-patterns-as-fills
-- https://jenkov.com/tutorials/svg/fill-patterns.html
 - https://designmodo.com/svg-patterns/
 - https://vanseodesign.com/web-design/svg-pattern-attributes/
 - https://webdesignerdepot.com/how-to-export-svg-patterns/
 - https://iros.github.io/patternfills/
-- https://css-tricks.com/almanac/properties/s/stroke-dasharray/
+- https://css-tricks.com/how-we-created-a-static-site-that-generates-tartan-patterns-in-svg/
+- https://jenkov.com/tutorials/svg/fill-patterns.html
 - https://www.geeksforgeeks.org/svg-pattern-element-2/
 - https://observablehq.com/@martin-pi/zoomable-pannable-svg-grid-patterns
 

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Point } from '$lib/utils/point.svelte';
+	import pattern from '$lib/utils/pattern.svelte';
 	import { mPath, lPath, qPath, cPath, zPath, pathBuilder } from '$lib/utils/path.svelte';
 
 	// Q1  (x: 0 - 100) (y: 0 - 100) | Q2 (x: 100 - 200) (y: 0 - 100)
@@ -26,20 +27,13 @@
 
 <!-- Premise: a path for each quadrant of the heart? Try out two part heart first lol -->
 <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+	<!-- <use href="$lib/utils/pattern.svelte" fill="url(#grid-axis)" /> -->
+	<rect x="0" y="0" width="100%" height="100%" fill="url(pattern.grid-10)" fill-opacity=".3" />
+
 	<g id="heart" fill="pink">
-		<path
-			d={pathBuilder([
-				mPath({ x: 0, y: 100 }),
-				lPath({ x: 200, y: 100 }),
-				mPath({ x: 100, y: 0 }),
-				lPath({ x: 100, y: 200 })
-			])}
-			stroke="black"
-			stroke-width="1"
-		/>
 		<path d={heartPath} stroke="black" stroke-width="1" />
 		{#each heartPoints as pt}
-			<circle cx={pt.x} cy={pt.y} r={0.5} stroke="red" stroke-width="2" fill="red" />
+			<circle cx={pt.x} cy={pt.y} r={0.5} stroke="red" stroke-width="1" fill="red" />
 		{/each}
 		<!-- <circle cx="100" cy="100" r="1" stroke="black" stroke-width="1" fill="black" /> -->
 	</g>
