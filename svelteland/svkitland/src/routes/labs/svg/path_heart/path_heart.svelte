@@ -20,6 +20,8 @@
 		heartStartPoint = $bindable({ x: 100, y: 85, id: 'heartStartPoint', isFocused: false }),
 		heartControl1 = $bindable({ x: 125, y: 40, id: 'heartControl1', isFocused: true }),
 		heartControl2 = $bindable({ x: 175, y: 90, id: 'heartControl2', isFocused: false }),
+		heartLeftControl1 = $bindable({ x: 75, y: 40, id: 'heartLeftControl1', isFocused: false }),
+		heartLeftControl2 = $bindable({ x: 25, y: 90, id: 'heartLeftControl2', isFocused: false }),
 		heartLowPoint = $bindable({ x: 100, y: 135, id: 'heartLowPoint', isFocused: false })
 	}: {
 		id?: string;
@@ -29,6 +31,8 @@
 		heartStartPoint?: InteractivePoint;
 		heartControl1?: InteractivePoint;
 		heartControl2?: InteractivePoint;
+		heartLeftControl1?: InteractivePoint;
+		heartLeftControl2?: InteractivePoint;
 		heartLowPoint?: InteractivePoint;
 	} = $props();
 
@@ -45,7 +49,14 @@
 	// const heartControl2: Point = { x: 75, y: 80 }; // Q1
 	// const heartLowPoint: Point = { x: 150, y: 100 }; // on y-Axis
 
-	let heartArray = $state([heartStartPoint, heartControl1, heartControl2, heartLowPoint]);
+	let heartArray = $state([
+		heartStartPoint,
+		heartControl1,
+		heartControl2,
+		heartLeftControl1,
+		heartLeftControl2,
+		heartLowPoint
+	]);
 	const heartPoints = $derived(heartArray);
 
 	function findPointById(id: string, arr: InteractivePoint[] = heartArray): InteractivePoint {
@@ -59,6 +70,11 @@
 				findPointById('heartControl1'),
 				findPointById('heartControl2'),
 				findPointById('heartLowPoint')
+			),
+			cPath(
+				findPointById('heartLeftControl2'),
+				findPointById('heartLeftControl1'),
+				findPointById('heartStartPoint')
 			)
 		])
 	);
@@ -153,64 +169,84 @@
 		<path d={heartPath} stroke="black" stroke-width="1" />
 	</g>
 
-	<line
-		x1={findPointById('heartStartPoint').x}
-		y1={findPointById('heartStartPoint').y}
-		x2={findPointById('heartControl1').x}
-		y2={findPointById('heartControl1').y}
-		stroke="grey"
-		stroke-width=".5"
-		stroke-opacity={0.5}
-	/>
+	<g id="draggable controls">
+		<line
+			class="control line"
+			x1={findPointById('heartStartPoint').x}
+			y1={findPointById('heartStartPoint').y}
+			x2={findPointById('heartControl1').x}
+			y2={findPointById('heartControl1').y}
+		/>
 
-	<line
-		x1={findPointById('heartLowPoint').x}
-		y1={findPointById('heartLowPoint').y}
-		x2={findPointById('heartControl2').x}
-		y2={findPointById('heartControl2').y}
-		stroke="grey"
-		stroke-width=".5"
-		stroke-opacity={0.5}
-	/>
+		<line
+			class="control line"
+			x1={findPointById('heartStartPoint').x}
+			y1={findPointById('heartStartPoint').y}
+			x2={findPointById('heartLeftControl1').x}
+			y2={findPointById('heartLeftControl1').y}
+		/>
 
-	{#each heartPoints as pt: InteractivePoint, i}
-		{#if pt.isFocused}
-			<circle
-				id={pt.id}
-				class="point draggable"
-				cx={pt.x}
-				cy={pt.y}
-				r={1}
-				fill="blue"
-				stroke="blue"
-				stroke-width="1"
-				stroke-opacity={0.5}
-				use:movePoint={i}
-			/>
-		{:else}
-			<circle
-				id={pt.id}
-				class="point"
-				cx={pt.x}
-				cy={pt.y}
-				r={1}
-				fill="red"
-				stroke="none"
-				use:addPointListener={pt}
-			/>
-		{/if}
-	{/each}
+		<line
+			class="control line"
+			x1={findPointById('heartLowPoint').x}
+			y1={findPointById('heartLowPoint').y}
+			x2={findPointById('heartControl2').x}
+			y2={findPointById('heartControl2').y}
+		/>
+
+		<line
+			class="control line"
+			x1={findPointById('heartLowPoint').x}
+			y1={findPointById('heartLowPoint').y}
+			x2={findPointById('heartLeftControl2').x}
+			y2={findPointById('heartLeftControl2').y}
+		/>
+
+		{#each heartPoints as pt: InteractivePoint, i}
+			{#if pt.isFocused}
+				<circle
+					id={pt.id}
+					class="point draggable"
+					cx={pt.x}
+					cy={pt.y}
+					r={3}
+					fill="blue"
+					stroke="blue"
+					stroke-width="1"
+					stroke-opacity={0.5}
+					use:movePoint={i}
+				/>
+			{:else}
+				<circle
+					id={pt.id}
+					class="point"
+					cx={pt.x}
+					cy={pt.y}
+					r={2}
+					fill="red"
+					stroke="none"
+					use:addPointListener={pt}
+				/>
+			{/if}
+		{/each}
+	</g>
 </svg>
 
 <style>
 	.point:hover {
 		cursor: pointer;
 		stroke: blue;
-		stroke-width: 2;
+		stroke-width: 4;
 		stroke-opacity: 0.5;
 	}
 
 	.point.draggable {
 		cursor: grab;
+	}
+
+	.control.line {
+		stroke: lightgray;
+		stroke-width: 2;
+		stroke-opacity: 0.75;
 	}
 </style>
