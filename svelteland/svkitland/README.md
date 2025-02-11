@@ -302,6 +302,7 @@ You can preview the production build with `npm run preview`.
 - https://css-tricks.com/svg-map-rollovers/
 - https://css-tricks.com/scroll-drawing/
 - https://css-tricks.com/swapping-svg-icons/
+- https://www.petercollingridge.co.uk/tutorials/svg/interactive/dragging/
 
 ### Masks
 
@@ -333,6 +334,10 @@ You can preview the production build with `npm run preview`.
 - https://css-tricks.com/a-guide-on-svg-support-in-email/
 - https://css-tricks.com/a-complete-guide-to-svg-fallbacks/
 - https://css-tricks.com/svg-fragment-identifiers-work/
+
+#### Sprite Sheets
+
+- https://ryantrimble.com/blog/what-the-heck-is-an-svg-sprite-sheet.html
 
 ### Paths
 
@@ -382,3 +387,9 @@ You can preview the production build with `npm run preview`.
 - https://css-tricks.com/tight-fitting-svg-shapes/
 - https://css-tricks.com/scale-svg/
 - https://css-tricks.com/svg-artboard-sizing/
+
+## HTML
+
+- https://developer.mozilla.org/en-US/docs/Web/API/SVG_API
+- https://developer.mozilla.org/en-US/docs/Web/API/SVGAnimatedLength
+- https://www.petercollingridge.co.uk/tutorials/svg/interactive/dragging/

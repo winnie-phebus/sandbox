@@ -5,6 +5,11 @@
 		y: number;
 	};
 
+	export type InteractivePoint = Point & {
+		isFocused?: boolean;
+		id?: string;
+	};
+
 	export type PathPortion = {
 		type: string;
 		points: Point[];
@@ -17,13 +22,19 @@
 		points: []
 	};
 
+	export const nullPath: PathPortion = {
+		type: '',
+		points: []
+	};
+
 	// FUNCTIONS --
 	export function pointToString(p: Point): string {
 		return `${p.x} ${p.y}`;
 	}
 
 	// move to
-	export function mPath(point: Point): PathPortion {
+	export function mPath(point: Point | undefined): PathPortion {
+		if (point === undefined) return nullPath;
 		return {
 			type: 'M',
 			points: [point]
@@ -31,7 +42,8 @@
 	}
 
 	// line to
-	export function lPath(end: Point): PathPortion {
+	export function lPath(end: Point | undefined): PathPortion {
+		if (end === undefined) return nullPath;
 		return {
 			type: 'L',
 			points: [end]
