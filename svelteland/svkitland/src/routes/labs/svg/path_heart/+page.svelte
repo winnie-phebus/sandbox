@@ -7,61 +7,19 @@
 	let { data }: { data: PageData } = $props();
 
 	let m = $state({ x: 0, y: 0 });
-	// function onpointermove(event) {
-	// 	m.x = event.clientX;
-	// 	m.y = event.clientY;
-	// }
-
-	function beginSliding(e) {
-		// slider.onpointermove = slide;
-		// slider.setPointerCapture(e.pointerId);
-	}
-
-	function stopSliding(e) {
-		// slider.onpointermove = null;
-		// slider.releasePointerCapture(e.pointerId);
-	}
-
-	function slide(e) {
-		// slider.style.transform = `translate(${e.clientX - 70}px)`;
-	}
-
-	function onpointerdown(event) {
-		m.x = event.clientX;
-		m.y = event.clientY;
-	}
-
-	function onpointerup(event) {
-		m.x = event.clientX;
-		m.y = event.clientY;
-	}
-
-	function onpointermove(event) {
-		m.x = event.clientX;
-		m.y = event.clientY;
-	}
-
-	function pointClick(pt: InteractivePoint) {
-		// m.x = event.clientX;
-		// m.y = event.clientY;
-		pt.isFocused = !pt.isFocused;
-	}
+	let gridWidth = 400;
+	let gridHeight = 400;
 </script>
 
 <main>
-	<!-- <h1>{data.title}</h1> -->
-	<!-- <p>{data.description}</p> -->
-	<!-- <RoundHeart {...data.props} /> -->
 	<h1>Path Heart</h1>
 
 	The pointer is at {Math.round(m.x)} x {Math.round(m.y)}
 	<div class="svgContainer">
-		<Grid />
+		<Grid width={gridWidth} height={gridHeight} />
 		<div id="coreSvg">
-			<PathHeart onclick={pointClick} />
+			<PathHeart width={gridWidth} height={gridHeight} />
 		</div>
-
-		<!-- </Grid> -->
 	</div>
 </main>
 
@@ -82,6 +40,8 @@
 		display: flex;
 		justify-content: center;
 		/* align-items: center; */
+		/* width: 50%;
+		height: 50%; */
 		border: 5px dotted var(--accent-color);
 		/* z-index: 0; */
 	}

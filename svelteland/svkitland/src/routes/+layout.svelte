@@ -6,6 +6,7 @@
 	<a href="/">home</a>
 	<a href="/labs/svg/round_heart">heart (round)</a>
 	<a href="/labs/svg/path_heart">heart (path)</a>
+	<a href="/labs/svg/sticky_figure">sticky figure</a>
 </nav>
 
 {@render children()}

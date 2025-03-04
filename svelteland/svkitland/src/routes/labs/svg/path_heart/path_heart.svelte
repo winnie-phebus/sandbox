@@ -12,17 +12,31 @@
 	} from '$lib/utils/path.svelte';
 	import type { Action } from 'svelte/action';
 
+	export const htStartPointId = 'heartStartPoint';
+	export const htRightControl1Id = 'rightControl1';
+	export const htRightControl2Id = 'rightControl2';
+	export const htLeftControl1Id = 'leftControl1';
+	export const htLeftControl2Id = 'leftControl2';
+	export const htLowPointId = 'heartLowPoint';
+
+	export const defaultHrtStartPoint = { x: 100, y: 85, id: htStartPointId, isFocused: false };
+	export const defaultHrtRightControl1 = { x: 125, y: 40, id: htRightControl1Id, isFocused: true };
+	export const defaultHrtRightControl2 = { x: 175, y: 90, id: htRightControl2Id, isFocused: false };
+	export const defaultHrtLeftControl1 = { x: 75, y: 40, id: htLeftControl1Id, isFocused: false };
+	export const defaultHrtLeftControl2 = { x: 25, y: 90, id: htLeftControl2Id, isFocused: false };
+	export const defaultHrtLowPoint = { x: 100, y: 135, id: htLowPointId, isFocused: false };
+
 	let {
 		id = '',
 		width = 200,
 		height = 200,
 		viewBox = '0 0 200 200',
-		heartStartPoint = $bindable({ x: 100, y: 85, id: 'heartStartPoint', isFocused: false }),
-		heartControl1 = $bindable({ x: 125, y: 40, id: 'heartControl1', isFocused: true }),
-		heartControl2 = $bindable({ x: 175, y: 90, id: 'heartControl2', isFocused: false }),
-		heartLeftControl1 = $bindable({ x: 75, y: 40, id: 'heartLeftControl1', isFocused: false }),
-		heartLeftControl2 = $bindable({ x: 25, y: 90, id: 'heartLeftControl2', isFocused: false }),
-		heartLowPoint = $bindable({ x: 100, y: 135, id: 'heartLowPoint', isFocused: false })
+		heartStartPoint = $bindable(defaultHrtStartPoint),
+		heartControl1 = $bindable(defaultHrtRightControl1),
+		heartControl2 = $bindable(defaultHrtRightControl2),
+		heartLeftControl1 = $bindable(defaultHrtLeftControl1),
+		heartLeftControl2 = $bindable(defaultHrtLeftControl2),
+		heartLowPoint = $bindable(defaultHrtLowPoint)
 	}: {
 		id?: string;
 		width?: number;
@@ -38,16 +52,6 @@
 
 	// Q1  (x: 0 - 100) (y: 0 - 100) | Q2 (x: 100 - 200) (y: 0 - 100)
 	// Q3 (x: 0 - 100) (y: 100-200) | Q4  (x: 100 - 200) (y: 100 - 200)
-
-	// const heartStartPoint: Point = { x: 100, y: 90 }; // on x-Axis
-	// const heartControl1: Point = { x: 160, y: 40 }; // Q2
-	// const heartControl2: Point = { x: 105, y: 120 }; // Q3
-	// const heartLowPoint: Point = { x: 100, y: 150 }; // on x-Axis
-
-	// const heartStartPoint: Point = { x: 50, y: 100 }; // on y-Axis
-	// const heartControl1: Point = { x: 125, y: 80 }; // Q2
-	// const heartControl2: Point = { x: 75, y: 80 }; // Q1
-	// const heartLowPoint: Point = { x: 150, y: 100 }; // on y-Axis
 
 	let heartArray = $state([
 		heartStartPoint,
@@ -65,16 +69,16 @@
 
 	const heartPath = $derived(
 		pathBuilder([
-			mPath(findPointById('heartStartPoint')),
+			mPath(findPointById(htStartPointId)),
 			cPath(
-				findPointById('heartControl1'),
-				findPointById('heartControl2'),
-				findPointById('heartLowPoint')
+				findPointById(htRightControl1Id),
+				findPointById(htRightControl2Id),
+				findPointById(htLowPointId)
 			),
 			cPath(
-				findPointById('heartLeftControl2'),
-				findPointById('heartLeftControl1'),
-				findPointById('heartStartPoint')
+				findPointById(htLeftControl2Id),
+				findPointById(htLeftControl1Id),
+				findPointById(htStartPointId)
 			)
 		])
 	);
@@ -103,7 +107,7 @@
 		let pt = heartArray.at(ptIndex) ?? heartStartPoint;
 
 		$effect(() => {
-			function getMousePosition(evt) {
+			function getMousePosition(evt: MouseEvent): Point {
 				var CTM = node.getScreenCTM() ?? new DOMMatrix();
 				return {
 					x: (evt.clientX - CTM.e) / CTM.a,
@@ -111,13 +115,13 @@
 				};
 			}
 
-			const startDrag = (event) => {
+			const startDrag = (evt: MouseEvent) => {
 				node.onmousemove = drag;
 				node.onmouseup = endDrag;
 				node.onmouseleave = endDrag;
 			};
 
-			const drag = (evt) => {
+			const drag = (evt: MouseEvent) => {
 				var coord = getMousePosition(evt);
 				var dragX = +coord.x.toFixed(2);
 				var dragY = +coord.y.toFixed(2);
@@ -152,19 +156,8 @@
 
 <!-- <Grid /> -->
 <!-- Premise: a path for each quadrant of the heart? Try out two part heart first lol -->
-<svelte:document />
+<!-- <svelte:document /> -->
 <svg {id} {width} {height} {viewBox}>
-	<!-- <use fill="url($lib/utils/pattern.svg#grid-axis)" /> -->
-	<!-- <use id="grid" href="../../../../lib/utils/pattern.svelte#grid-axis" /> -->
-	<!-- <rect
-		x="0"
-		y="0"
-		width="100%"
-		height="100%"
-		fill="url(../../../../lib/utils/pattern.svg#grid-axis)"
-		fill-opacity=".3"
-	/> -->
-
 	<g id="heart" fill="pink">
 		<path d={heartPath} stroke="black" stroke-width="1" />
 	</g>
@@ -172,34 +165,34 @@
 	<g id="draggable controls">
 		<line
 			class="control line"
-			x1={findPointById('heartStartPoint').x}
-			y1={findPointById('heartStartPoint').y}
-			x2={findPointById('heartControl1').x}
-			y2={findPointById('heartControl1').y}
+			x1={findPointById(htStartPointId).x}
+			y1={findPointById(htStartPointId).y}
+			x2={findPointById(htRightControl1Id).x}
+			y2={findPointById(htRightControl1Id).y}
 		/>
 
 		<line
 			class="control line"
-			x1={findPointById('heartStartPoint').x}
-			y1={findPointById('heartStartPoint').y}
-			x2={findPointById('heartLeftControl1').x}
-			y2={findPointById('heartLeftControl1').y}
+			x1={findPointById(htStartPointId).x}
+			y1={findPointById(htStartPointId).y}
+			x2={findPointById(htLeftControl1Id).x}
+			y2={findPointById(htLeftControl1Id).y}
 		/>
 
 		<line
 			class="control line"
-			x1={findPointById('heartLowPoint').x}
-			y1={findPointById('heartLowPoint').y}
-			x2={findPointById('heartControl2').x}
-			y2={findPointById('heartControl2').y}
+			x1={findPointById(htLowPointId).x}
+			y1={findPointById(htLowPointId).y}
+			x2={findPointById(htRightControl2Id).x}
+			y2={findPointById(htRightControl2Id).y}
 		/>
 
 		<line
 			class="control line"
-			x1={findPointById('heartLowPoint').x}
-			y1={findPointById('heartLowPoint').y}
-			x2={findPointById('heartLeftControl2').x}
-			y2={findPointById('heartLeftControl2').y}
+			x1={findPointById(htLowPointId).x}
+			y1={findPointById(htLowPointId).y}
+			x2={findPointById(htLeftControl2Id).x}
+			y2={findPointById(htLeftControl2Id).y}
 		/>
 
 		{#each heartPoints as pt: InteractivePoint, i}

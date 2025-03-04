@@ -10,6 +10,8 @@
 		id?: string;
 	};
 
+	export type PathPoint = InteractivePoint | Point | undefined;
+
 	export type PathPortion = {
 		type: string;
 		points: Point[];
@@ -33,7 +35,7 @@
 	}
 
 	// move to
-	export function mPath(point: Point | undefined): PathPortion {
+	export function mPath(point: PathPoint): PathPortion {
 		if (point === undefined) return nullPath;
 		return {
 			type: 'M',
@@ -42,7 +44,7 @@
 	}
 
 	// line to
-	export function lPath(end: Point | undefined): PathPortion {
+	export function lPath(end: PathPoint): PathPortion {
 		if (end === undefined) return nullPath;
 		return {
 			type: 'L',
@@ -51,7 +53,8 @@
 	}
 
 	// quadratic bezier curve
-	export function qPath(control: Point, end: Point): PathPortion {
+	export function qPath(control: PathPoint, end: PathPoint): PathPortion {
+		if (control === undefined || end === undefined) return nullPath;
 		return {
 			type: 'Q',
 			points: [control, end]
@@ -59,7 +62,8 @@
 	}
 
 	// cubic bezier curve
-	export function cPath(control1: Point, control2: Point, end: Point): PathPortion {
+	export function cPath(control1: PathPoint, control2: PathPoint, end: PathPoint): PathPortion {
+		if (control1 === undefined || control2 === undefined || end === undefined) return nullPath;
 		return {
 			type: 'C',
 			points: [control1, control2, end]
